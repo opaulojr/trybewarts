@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #0f0f0f;
+}
+
+header {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2f2f2f;
+  background: #0f0f0f;
+  background-color: #32a791;
+}
+
+#header-logo {
+  height: 34px;
+  margin-left: 10px;
+}
+
+#header-title {
+  color: white;
+}
+
+.menu-toggle {
+  display: flex;
+  margin-right: 10px;
+  color: white;
+  gap: 0.5rem;
+}
+
+#login-toggle,
+#register-toggle {
+  cursor: pointer;
+}
+
+#login-toggle:hover,
+#register-toggle:hover {
+  color: #0f0f0f;
+}
+
+.login-menu,
+.register-menu {
+  position: fixed;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 20px 20px 0 0;
+  background-color: #f8f8f8;
+  gap: 1rem;
+  text-align: center;
+}
+
+.login-menu form,
+.register-menu form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+input {
+  height: 32px;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid #32a791;
+  outline: 1px solid #32a791;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#register-terms {
+  outline: none;
+}
+
+button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #32a791;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:disabled {
+  background-color: gray;
+  cursor: default;
+}
+
+@media screen and (width <= 640px) {
+  #header-title {
+    font-size: 1.5rem;
+  }
+
+  .active {
+    display: flex;
+  }
+}
+
+@media screen and (width > 640px) {
+  header {
+    height: 60px;
+  }
+
+  #header-logo {
+    height: 44px;
+    margin: 2rem;
+  }
+
+  .menu-toggle {
+    margin: 2rem;
+  }
+
+  .login-menu,
+  .register-menu {
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    max-width: 400px;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+  }
+
+  .login-menu {
+    min-height: 350px;
+  }
+
+  .register-menu {
+    min-height: 450px;
+  }
+
+  .active {
+    display: flex;
+  }
+}

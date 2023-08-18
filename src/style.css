@@ -111,12 +111,13 @@ header {
 
 main {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   gap: 1rem;
 }
 
 .evaluation-form {
   display: flex;
+  max-width: 40rem;
   flex-direction: column;
   margin-top: 1rem;
   gap: 1rem;
@@ -164,6 +165,10 @@ main {
   padding: 0.5rem;
   border: none;
   border-radius: 5px;
+}
+
+.body-logo {
+  display: none;
 }
 
 /* ------ OTHERS ------ */
@@ -247,6 +252,13 @@ main {
     min-height: 450px;
   }
 
+  .evaluation-form {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    margin: 2rem;
+  }
+
   .user-form {
     align-items: center;
     justify-content: center;
@@ -271,5 +283,15 @@ main {
 
   .active {
     display: flex;
+  }
+}
+
+@media screen and (width >= 1280px) {
+  .body-logo {
+    display: flex;
+    width: 50%;
+    max-width: 600px;
+    padding: 1rem;
+    margin: 2rem;
   }
 }

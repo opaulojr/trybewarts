@@ -73,6 +73,7 @@ header {
 .login-menu,
 .register-menu {
   position: fixed;
+  z-index: 999;
   bottom: 0;
   display: none;
   width: 100%;
@@ -185,6 +186,7 @@ main {
 
 #textarea-input {
   width: 100%;
+  padding-bottom: 1.5rem;
 }
 
 #counter {
@@ -195,26 +197,32 @@ main {
   font-size: 12px;
 }
 
+.submit-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px 2rem;
+}
+
 .body-logo {
   display: none;
 }
-
-/* ------ OTHERS ------ */
 
 .error-message {
   color: red;
   font-size: 12px;
 }
 
-.terms {
+.terms-register,
+.terms-form {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 }
 
-#register-terms {
-  outline: none;
+.terms-form label {
+  font-size: 1rem;
 }
 
 @media screen and (width < 640px) {
@@ -250,6 +258,14 @@ main {
   .rate-input {
     width: 12.5rem;
     flex-wrap: wrap;
+  }
+
+  .terms-form {
+    margin: 0 20px 20px;
+  }
+
+  .terms-form label {
+    font-size: 0.9rem;
   }
 
   .active {

@@ -43,7 +43,7 @@
           <label for="password-register">Password*</label>
           <input id="password-register" type="password" name="password" placeholder="Password">
           <div id="password-error" class="error-message" style="display: none;">Password must be at least 8 characters</div>
-          <div class="terms">
+          <div class="terms-register">
             <input id="register-terms" type="checkbox">I have read and agree to the terms of use*
           </div>
           <button id="register-btn" type="submit" disabled>Register</button>
@@ -117,6 +117,15 @@
           <textarea id="textarea-input" rows="6" maxlength="500"></textarea>
           <div id="counter"></div>
         </section>
+
+        <div class="terms-form">
+          <input id="agreement" type="checkbox">
+          <label>You agree to the use of the information above?</label>
+        </div>
+
+        <div class="submit-form">
+          <button id="submit-form-btn" type="submit" disabled>Send</button>
+        </div>
       </form>
       <img class="body-logo" src="./assets/trybewarts-colored.svg" alt="TrybeWarts Emblem">
     </main>

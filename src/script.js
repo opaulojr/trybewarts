@@ -16,6 +16,9 @@ const registerButton = document.getElementById('register-btn');
 const textarea = document.getElementById('textarea-input');
 const charCount = document.getElementById('counter');
 
+const agreementCheckbox = document.getElementById('agreement');
+const submitFormButton = document.getElementById('submit-form-btn');
+
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -40,6 +43,10 @@ function updateCharCount() {
   charCount.textContent = `${remainingChars}`;
 }
 
+function updateSubmitButtonState() {
+  submitFormButton.disabled = !agreementCheckbox.checked;
+}
+
 loginToggle.addEventListener('click', () => {
   registerMenu.classList.remove('active');
   loginMenu.classList.toggle('active');
@@ -59,6 +66,11 @@ passwordInput.addEventListener('input', updateRegisterButtonState);
 registerTermsCheckbox.addEventListener('change', updateRegisterButtonState);
 
 textarea.addEventListener('input', updateCharCount);
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateSubmitButtonState();
+  agreementCheckbox.addEventListener('change', updateSubmitButtonState);
+});
 
 window.addEventListener('load', () => {
   updateCharCount();

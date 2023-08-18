@@ -13,6 +13,9 @@ const passwordInput = document.getElementById('password-register');
 const registerTermsCheckbox = document.getElementById('register-terms');
 const registerButton = document.getElementById('register-btn');
 
+const textarea = document.getElementById('textarea-input');
+const charCount = document.getElementById('counter');
+
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -32,6 +35,11 @@ function updateRegisterButtonState() {
   registerButton.disabled = !(nameValid && emailValid && passwordValid && termsAgreed);
 }
 
+function updateCharCount() {
+  const remainingChars = 500 - textarea.value.length;
+  charCount.textContent = `${remainingChars}`;
+}
+
 loginToggle.addEventListener('click', () => {
   registerMenu.classList.remove('active');
   loginMenu.classList.toggle('active');
@@ -49,3 +57,9 @@ nameRegisterInput.addEventListener('input', updateRegisterButtonState);
 emailInput.addEventListener('input', updateRegisterButtonState);
 passwordInput.addEventListener('input', updateRegisterButtonState);
 registerTermsCheckbox.addEventListener('change', updateRegisterButtonState);
+
+textarea.addEventListener('input', updateCharCount);
+
+window.addEventListener('load', () => {
+  updateCharCount();
+});

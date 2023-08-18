@@ -67,22 +67,34 @@
             <div id="family-input">
               <input type="radio" name="family" value="Frontend">Frontend
               <input type="radio" name="family" value="Backend">Backend
-            <input type="radio" name="family" value="FullStack">FullStack
-          </div>
+              <input type="radio" name="family" value="FullStack">FullStack
+            </div>
+          </section>
+
+          <section class="house-form">
+            <label>What is your house?</label>
+            <div id="house-input">
+              <select id="house-select" name="house">
+                <option id="gitnoria-house" value="Gitnória">Gitnória</option>
+                <option id="reactpuff-house" value="Reactpuff">Reactpuff</option>
+                <option id="corvinode-house" value="Corvinode">Corvinode</option>
+                <option id="pytherina-house" value="Pytherina">Pytherina</option>
+              </select>
+            </div>
+          </section>
         </section>
 
-        <div class="house-form">
-          <label>What is your house?</label>
-          <div id="house-input">
-            <select id="house-select" name="house">
-              <option id="gitnoria-house" value="Gitnória">Gitnória</option>
-              <option id="reactpuff-house" value="Reactpuff">Reactpuff</option>
-              <option id="corvinode-house" value="Corvinode">Corvinode</option>
-              <option id="pytherina-house" value="Pytherina">Pytherina</option>
-            </select>
-          </section>
+        <section class="content-form">
+          <label>What content are you most excited to learn about?</label>
+          <div class="content-input">
+            <input class="subject" type="checkbox" value="HoFs">HoFs
+            <input class="subject" type="checkbox" value="Jest">Jest
+            <input class="subject" type="checkbox" value="Promises">Promises
+            <input class="subject" type="checkbox" value="React">React
+            <input class="subject" type="checkbox" value="SQL">SQL
+            <input class="subject" type="checkbox" value="Python">Python
           </div>
-        </div>
+        </section>
       </form>
       <img class="body-logo" src="./assets/trybewarts-colored.svg" alt="TrybeWarts Emblem">
     </main>

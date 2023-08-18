@@ -204,6 +204,20 @@ main {
   margin: 0 20px 2rem;
 }
 
+#form-data {
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  margin: 20px;
+  gap: 1rem;
+}
+
+.data {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .body-logo {
   display: none;
 }
@@ -333,6 +347,13 @@ main {
   .family-house {
     justify-content: center;
     gap: 2rem;
+  }
+
+  #form-data {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    margin: 2rem;
   }
 
   .active {

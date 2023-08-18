@@ -19,6 +19,9 @@ const charCount = document.getElementById('counter');
 const agreementCheckbox = document.getElementById('agreement');
 const submitFormButton = document.getElementById('submit-form-btn');
 
+const form = document.querySelector('.evaluation-form');
+const formDataContainer = document.getElementById('form-data');
+
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -47,6 +50,30 @@ function updateSubmitButtonState() {
   submitFormButton.disabled = !agreementCheckbox.checked;
 }
 
+function displayFormData() {
+  const name = form.querySelector('#name-form').value;
+  const email = form.querySelector('#email-form').value;
+  const house = form.querySelector('#house-select').value;
+  const family = form.querySelector('input[name="family"]:checked').value;
+  const subjects = Array.from(form.querySelectorAll('.subject:checked')).map((subject) => subject.value).join(', ');
+  const rating = form.querySelector('input[name="rate"]:checked').value;
+  const comment = form.querySelector('#textarea-input').value;
+
+  const formattedData = `
+    <div class="data"><h2>Name:</h2><p>${name}</p></div>
+    <div class="data"><h2>Email:</h2><p>${email}</p></div>
+    <div class="data"><h2>Family:</h2><p>${family}</p></div>
+    <div class="data"><h2>House:</h2><p>${house}</p></div>
+    <div class="data"><h2>Subjects:</h2><p>${subjects}</p></div>
+    <div class="data"><h2>Rating:</h2><p>${rating}</p></div>
+    <div class="data"><h2>Comment:</h2><p>${comment}</p></div>
+  `;
+
+  formDataContainer.innerHTML = formattedData;
+  form.style.display = 'none';
+  formDataContainer.style.display = 'flex';
+}
+
 loginToggle.addEventListener('click', () => {
   registerMenu.classList.remove('active');
   loginMenu.classList.toggle('active');
@@ -70,6 +97,11 @@ textarea.addEventListener('input', updateCharCount);
 document.addEventListener('DOMContentLoaded', () => {
   updateSubmitButtonState();
   agreementCheckbox.addEventListener('change', updateSubmitButtonState);
+});
+
+submitFormButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  displayFormData();
 });
 
 window.addEventListener('load', () => {

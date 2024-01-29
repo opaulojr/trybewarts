@@ -68,6 +68,7 @@ header {
 #login-toggle:hover,
 #register-toggle:hover {
   color: #0f0f0f;
+  transition: 500ms;
 }
 
 .login-menu,
@@ -88,7 +89,6 @@ header {
   text-align: center;
 }
 
-
 .login-menu form,
 .register-menu form {
   display: flex;
@@ -106,6 +106,17 @@ header {
 .login-menu input:focus,
 .register-menu input:focus {
   border: 1px solid #32a791;
+}
+
+#close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border-radius: 50%;
+  font-weight: 600;
 }
 
 /* ------ MAIN ------ */
@@ -295,11 +306,11 @@ main {
 
   #header-logo {
     height: 44px;
-    margin: 2rem;
+    margin-left: 2rem;
   }
 
   .menu-toggle {
-    margin: 2rem;
+    margin-right: 2rem;
   }
 
   .login-menu,

@@ -2,6 +2,7 @@ const loginToggle = document.getElementById('login-toggle');
 const registerToggle = document.getElementById('register-toggle');
 const loginMenu = document.querySelector('.login-menu');
 const registerMenu = document.querySelector('.register-menu');
+const closeMenuBtn = document.querySelectorAll('#close-btn');
 
 const emailLoginInput = document.getElementById('email-login');
 const passwordLoginInput = document.getElementById('password-login');
@@ -33,6 +34,28 @@ function updateLoginButtonState() {
   loginBtn.disabled = !(emailValid && passwordValid);
 }
 
+loginBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  const menuToggle = document.querySelector('.menu-toggle');
+
+  const email = emailLoginInput.value;
+  const password = passwordLoginInput.value;
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+
+  const foundUser = users.find((user) => user.userEmail === email
+  && user.userPassword === password);
+
+  if (foundUser) {
+    alert('Login bem-sucedido!');
+    menuToggle.innerHTML = 'Logged';
+    loginMenu.classList.remove('active');
+    return;
+  }
+
+  alert('Credenciais inválidas. Por favor, tente novamente.');
+});
+
 function updateRegisterButtonState() {
   const nameValid = nameRegisterInput.value.length >= 3;
   const emailValid = validateEmail(emailInput.value);
@@ -40,6 +63,24 @@ function updateRegisterButtonState() {
   const termsAgreed = registerTermsCheckbox.checked;
   registerButton.disabled = !(nameValid && emailValid && passwordValid && termsAgreed);
 }
+
+registerButton.addEventListener('click', () => {
+  const name = nameRegisterInput.value;
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+
+  const userData = {
+    userName: name,
+    userEmail: email,
+    userPassword: password,
+  };
+
+  users.push(userData);
+
+  localStorage.setItem('users', JSON.stringify(users));
+});
 
 function updateCharCount() {
   const remainingChars = 500 - textarea.value.length;
@@ -77,6 +118,13 @@ function displayFormData() {
 loginToggle.addEventListener('click', () => {
   registerMenu.classList.remove('active');
   loginMenu.classList.toggle('active');
+});
+
+closeMenuBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    registerMenu.classList.remove('active');
+    loginMenu.classList.remove('active');
+  });
 });
 
 emailLoginInput.addEventListener('input', updateLoginButtonState);

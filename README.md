@@ -22,25 +22,44 @@ In this project, I developed a feedback form page for the Trybewarts School of M
 
 ## Implemented Functionalities
 
-## Implementado Login e cadastro do usuário
+## Implemented User Login and Registration
 
 <details>
   <summary>
-    Implementado uma sessão de login e cadastro do usuário dentro do <code>header</code>
+    Implemented a user login and registration section within the <code>header</code>
   </summary> <br/>
 
-  - Existe os botões para o usuário fazer o login ou cadastrar-se, onde para cada uma das opções existe um card com seu formulário próprio
+  - When registering, the **name**, **email**, and **password** are saved in LocalStorage in the following format:
+```js
+[
+  {
+    userName: "name",
+    userEmail: "email",
+    userPassword: "password"
+  },
+  ...
+]
+```
 
-  - Existe o input de **email** dentro do formulário:
-    - Adicionado o atributo `name` com o valor **email**
-    - Adicionado o atributo `placeholder` com o valor **Email**
-
-  - Existe o input de **senha** dentro do formulário:
-    - Adicionado o atributo `name` com o valor **password**
-    - Adicionado o atributo `placeholder` com o valor **Senha**
-
-  - Existe o botão submit de ambos os forms (Login ou Cadastro):
-    - No caso de login o botão só fica ativo caso o valor do input **email** tenha sido preenchido no formato `exemple@test.co` e o input **password** tenha **8 ou mais caracteres**
-
-    - No caso do cadastro além de **email** e **password**, o input **name** também deve ser preenchido com pelo menos 3 caracteres e os termos de uso deve ser aceito para que o botão fique ativo
+  - When logging in, it checks in LocalStorage if there is a user with the email and password corresponding to those entered in the input fields. If there is, an `alert` with the text **'Login successful!'** is displayed; if not, an `alert` saying **'Invalid credentials. Please try again.'** is shown.
 </details>
+
+
+## Implemented a feedback form on the page
+
+<details>
+  <summary>
+    Created a satisfaction form for the first semester of students at TrybeWarts school
+  </summary> <br />
+
+  - For the form to be submitted:
+
+    - Name must be filled out with 3 or more characters
+    - Email must be filled out and have the correct format (**example@test.co**)
+    - A family must be chosen
+    - A rating must be given to the school
+
+  - When submitting the form, the filled and submitted data is displayed to the user
+</details>
+
+---

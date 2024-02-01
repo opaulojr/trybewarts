@@ -14,6 +14,10 @@ const passwordInput = document.getElementById('password-register');
 const registerTermsCheckbox = document.getElementById('register-terms');
 const registerButton = document.getElementById('register-btn');
 
+const nameForm = document.getElementById('name-form');
+const emailForm = document.getElementById('email-form');
+const familyInputs = document.querySelectorAll('input[name="family"]');
+const rateInputs = document.querySelectorAll('input[name="rate"]');
 const textarea = document.getElementById('textarea-input');
 const charCount = document.getElementById('counter');
 
@@ -22,6 +26,7 @@ const submitFormButton = document.getElementById('submit-form-btn');
 
 const form = document.querySelector('.evaluation-form');
 const formDataContainer = document.getElementById('form-data');
+const bodyLogo = document.querySelector('.body-logo');
 
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,13 +52,13 @@ loginBtn.addEventListener('click', (event) => {
   && user.userPassword === password);
 
   if (foundUser) {
-    alert('Login bem-sucedido!');
+    alert('Login successful!');
     menuToggle.innerHTML = 'Logged';
     loginMenu.classList.remove('active');
     return;
   }
 
-  alert('Credenciais inválidas. Por favor, tente novamente.');
+  alert('Invalid credentials. Please try again.');
 });
 
 function updateRegisterButtonState() {
@@ -78,6 +83,7 @@ registerButton.addEventListener('click', () => {
   };
 
   users.push(userData);
+  alert('Successful registration!');
 
   localStorage.setItem('users', JSON.stringify(users));
 });
@@ -88,7 +94,13 @@ function updateCharCount() {
 }
 
 function updateSubmitButtonState() {
-  submitFormButton.disabled = !agreementCheckbox.checked;
+  const isFamilySelected = document.querySelector('input[name="family"]:checked');
+  const isRateSelected = document.querySelector('input[name="rate"]:checked');
+
+  const validEmail = validateEmail(emailForm.value);
+  const validName = nameForm.value.length < 3;
+  submitFormButton.disabled = validName || !validEmail
+  || !isFamilySelected || !isRateSelected || !agreementCheckbox.checked;
 }
 
 function displayFormData() {
@@ -105,7 +117,7 @@ function displayFormData() {
     <div class="data"><h2>Email:</h2><p>${email}</p></div>
     <div class="data"><h2>Family:</h2><p>${family}</p></div>
     <div class="data"><h2>House:</h2><p>${house}</p></div>
-    <div class="data"><h2>Subjects:</h2><p>${subjects}</p></div>
+    <div class="data"><h2>Expected contents:</h2><p>${subjects}</p></div>
     <div class="data"><h2>Rating:</h2><p>${rating}</p></div>
     <div class="data"><h2>Comment:</h2><p>${comment}</p></div>
   `;
@@ -140,6 +152,10 @@ emailInput.addEventListener('input', updateRegisterButtonState);
 passwordInput.addEventListener('input', updateRegisterButtonState);
 registerTermsCheckbox.addEventListener('change', updateRegisterButtonState);
 
+nameForm.addEventListener('input', () => updateSubmitButtonState());
+emailForm.addEventListener('input', () => updateSubmitButtonState());
+familyInputs.forEach((input) => input.addEventListener('change', updateSubmitButtonState));
+rateInputs.forEach((input) => input.addEventListener('change', updateSubmitButtonState));
 textarea.addEventListener('input', updateCharCount);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -150,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 submitFormButton.addEventListener('click', (event) => {
   event.preventDefault();
   displayFormData();
+  bodyLogo.style.display = 'none';
 });
 
 window.addEventListener('load', () => {
